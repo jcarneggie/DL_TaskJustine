@@ -4,3 +4,4 @@ data/
 results/ckpt/*.pt
 !results/ckpt/README.md
 .DS_Store
+results/ckpt/*.npy

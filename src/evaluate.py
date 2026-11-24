@@ -20,7 +20,8 @@ from common import (set_seed, get_splits, to_01, DEVICE, CKPT_DIR, HIST_DIR, MET
 from models import (VanillaAE, SparseAE, VAE, MLPGenerator, DCGenerator, DDPM,  # noqa: E402
                     MLPClassifier, NZ)
 
-N_GEN = 1000
+N_GEN = int(os.environ.get("N_GEN", 1000))
+SMOKE = os.environ.get("SMOKE") == "1"
 
 
 def load(model, name):
@@ -48,7 +49,9 @@ def inception_acts(x01, bs=200):
 def fid_from_acts(a, b):
     mu1, mu2 = a.mean(0), b.mean(0)
     s1, s2 = np.cov(a, rowvar=False), np.cov(b, rowvar=False)
-    covmean, _ = linalg.sqrtm(s1.dot(s2), disp=False)
+    covmean = linalg.sqrtm(s1.dot(s2))
+    if isinstance(covmean, tuple):      # kompatibel scipy lama/baru
+        covmean = covmean[0]
     if not np.isfinite(covmean).all():
         off = np.eye(s1.shape[0]) * 1e-6
         covmean = linalg.sqrtm((s1 + off).dot(s2 + off))
@@ -114,6 +117,8 @@ def main():
     set_seed()
     torch.set_num_threads(max(1, os.cpu_count() or 1))
     xt, yt = get_splits()["test"]
+    if SMOKE:
+        xt, yt = xt[:300], yt[:300]
     x64 = xt[:64].to(DEVICE)
     M, samples = {}, {}
     clf = load(MLPClassifier(), "mlp_classifier.pt")
@@ -146,22 +151,33 @@ def main():
     z_g = torch.randn(N_GEN, NZ, generator=g).to(DEVICE)
     with torch.no_grad():
         gen = {"vae": vae.decode(z_v).cpu(), "gan": to_01(gan(z_g)).cpu(), "dcgan": to_01(dcg(z_g)).cpu()}
-    torch.manual_seed(7)
-    ddpm_x = []
-    for i in range(0, N_GEN, 250):
-        ddpm_x.append(to_01(ddpm.sample(250, DEVICE)).cpu())
-        print("ddpm sampled", i + 250, flush=True)
-    gen["ddpm"] = torch.cat(ddpm_x)
+    cache = os.path.join(CKPT_DIR, f"ddpm_samples_{N_GEN}.pt")
+    if os.path.exists(cache) and not SMOKE:          # sampling DDPM mahal, simpan hasilnya
+        gen["ddpm"] = torch.load(cache)
+    else:
+        torch.manual_seed(7)
+        ddpm_x = []
+        for i in range(0, N_GEN, 250):
+            ddpm_x.append(to_01(ddpm.sample(min(250, N_GEN - i), DEVICE)).cpu())
+            print("ddpm sampled", i + 250, flush=True)
+        gen["ddpm"] = torch.cat(ddpm_x)
+        torch.save(gen["ddpm"], cache)
 
     zb_v, zb_g = torch.randn(64, vae.latent, device=DEVICE), torch.randn(64, NZ, device=DEVICE)
     M["vae"]["latency_gen_ms_b64"] = latency_ms(lambda: vae.decode(zb_v))
     M["gan"] = {"latency_gen_ms_b64": latency_ms(lambda: gan(zb_g))}
     M["dcgan"] = {"latency_gen_ms_b64": latency_ms(lambda: dcg(zb_g))}
-    M["ddpm"] = {"latency_gen_ms_b64": latency_ms(lambda: ddpm.sample(64, DEVICE), repeats=3, warmup=1),
+    M["ddpm"] = {"latency_gen_ms_b64": latency_ms(lambda: ddpm.sample(64, DEVICE), repeats=1 if SMOKE else 3, warmup=0 if SMOKE else 1),
                  "sampling_steps": ddpm.T}
 
     # -------------------------------------------------------------- FID
-    real_acts = inception_acts(xt)
+    racache = os.path.join(CKPT_DIR, "inception_acts_test.npy")
+    if os.path.exists(racache) and not SMOKE:
+        real_acts = np.load(racache)
+    else:
+        real_acts = inception_acts(xt)
+        np.save(racache, real_acts)
+    print("real acts", real_acts.shape, flush=True)
     tr_x = get_splits()["train"][0]
     ref = fid_from_acts(inception_acts(tr_x[torch.randperm(len(tr_x), generator=g)[:N_GEN]]), real_acts)
     M["reference_fid_real_train_1000_vs_test"] = ref
