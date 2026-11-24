@@ -1,0 +1,111 @@
+{
+  "stage1": {
+    "test_accuracy": 0.9024285674095154,
+    "train_time_s": 343.7810082435608
+  },
+  "weight_algebra": {
+    "W1": {
+      "shape": [
+        256,
+        784
+      ],
+      "rank": 256,
+      "in_dim": 784,
+      "rel_frobenius_WtW_minus_I": 20.0809268951416,
+      "sigma_max": 15.884541511535645,
+      "sigma_min": 0.3735186457633972,
+      "condition_number": 42.526771545410156
+    },
+    "W2": {
+      "shape": [
+        64,
+        256
+      ],
+      "rank": 64,
+      "in_dim": 256,
+      "rel_frobenius_WtW_minus_I": 5.498924255371094,
+      "sigma_max": 7.360222816467285,
+      "sigma_min": 0.5083804726600647,
+      "condition_number": 14.477784156799316
+    },
+    "W3": {
+      "shape": [
+        10,
+        64
+      ],
+      "rank": 10,
+      "in_dim": 64,
+      "rel_frobenius_WtW_minus_I": 3.803659677505493,
+      "sigma_max": 5.287411212921143,
+      "sigma_min": 1.1478981971740723,
+      "condition_number": 4.606167316436768
+    }
+  },
+  "stage2": {
+    "sigmoid_output_range": [
+      0.008950055576860905,
+      0.9566482305526733
+    ],
+    "sigmoid_output_std": 0.1391112506389618,
+    "zeroed_frac_z_hat": 0.5531250238418579,
+    "zeroed_frac_h1_hat": 0.5726562738418579,
+    "pearson_corr_with_class_mean_image": [
+      0.22444856892304768,
+      0.25333187366020365,
+      0.3892407075357176,
+      0.25847713446614395,
+      0.40892396804190984,
+      0.34005153717747616,
+      0.15929739905712642,
+      0.34665582749737917,
+      0.3237214160745462,
+      0.2610494834876265
+    ],
+    "mse_vs_class_mean": 0.09284429997205734
+  },
+  "stage3": {
+    "mse": 0.25043049454689026,
+    "psnr": 6.080476760864258,
+    "ssim": 0.11878030016886,
+    "minmax_vis_mse": 0.18063859641551971,
+    "minmax_vis_psnr": 7.577653884887695,
+    "minmax_vis_ssim": 0.10479493675641392,
+    "zeroed_frac_z_mlp": 0.5933370590209961,
+    "zeroed_frac_h1_forward": 0.811740517616272
+  },
+  "stage4": {
+    "frozen_mlp_decoder": {
+      "mse": 0.02028292417526245,
+      "psnr": 17.793455123901367,
+      "ssim": 0.6409084167924071,
+      "intra_class_var_ratio": 0.6184999763965606,
+      "train_time_s": 514.2206766605377
+    },
+    "vanilla_ae": {
+      "mse": 0.006425981875509024,
+      "psnr": 23.075111389160156,
+      "ssim": 0.8288766948687818,
+      "intra_class_var_ratio": 0.8799779534339904
+    }
+  },
+  "stage5": {
+    "frac_negative_in_z_rand": 0.2683125138282776,
+    "frac_zero_in_real_z_mlp": 0.5933370590209961,
+    "classifier_max_prob_mean_samples": 0.7276514172554016,
+    "classifier_max_prob_mean_real": 0.9275684952735901,
+    "frac_samples_confident_gt_0.9": 0.30799999833106995,
+    "frac_real_confident_gt_0.9": 0.7857142686843872,
+    "predicted_class_hist_samples": [
+      73,
+      26,
+      72,
+      122,
+      209,
+      54,
+      175,
+      35,
+      218,
+      16
+    ]
+  }
+}

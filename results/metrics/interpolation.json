@@ -1,0 +1,97 @@
+{
+  "ae": {
+    "mean_maxprob_mid_alpha": 0.8494524955749512,
+    "step_l2": [
+      1.759704828262329,
+      1.9805192947387695,
+      2.3935201168060303,
+      1.9832441806793213,
+      1.6974395513534546
+    ],
+    "step_l2_max_over_mean": 1.2193886041641235,
+    "pred_classes_along_path": [
+      "Trouser",
+      "Trouser",
+      "Bag",
+      "Bag",
+      "Bag",
+      "Bag"
+    ]
+  },
+  "sae": {
+    "mean_maxprob_mid_alpha": 0.9790322780609131,
+    "step_l2": [
+      2.074582099914551,
+      1.9950015544891357,
+      2.1348135471343994,
+      2.199284553527832,
+      2.026655912399292
+    ],
+    "step_l2_max_over_mean": 1.0542728900909424,
+    "pred_classes_along_path": [
+      "Trouser",
+      "Trouser",
+      "Bag",
+      "Bag",
+      "Bag",
+      "Bag"
+    ]
+  },
+  "vae": {
+    "mean_maxprob_mid_alpha": 0.7161247730255127,
+    "step_l2": [
+      2.0139143466949463,
+      1.8864812850952148,
+      2.252474308013916,
+      2.205507755279541,
+      1.7620009183883667
+    ],
+    "step_l2_max_over_mean": 1.1128408908843994,
+    "pred_classes_along_path": [
+      "Trouser",
+      "Trouser",
+      "Coat",
+      "Bag",
+      "Bag",
+      "Bag"
+    ]
+  },
+  "gan": {
+    "mean_maxprob_mid_alpha": 0.8051396012306213,
+    "step_l2": [
+      3.952894926071167,
+      3.2147719860076904,
+      4.5745768547058105,
+      3.966339111328125,
+      4.943301200866699
+    ],
+    "step_l2_max_over_mean": 1.196816086769104,
+    "pred_classes_along_path": [
+      "Trouser",
+      "Dress",
+      "Dress",
+      "Dress",
+      "Bag",
+      "Bag"
+    ]
+  },
+  "dcgan": {
+    "mean_maxprob_mid_alpha": 0.7941348552703857,
+    "step_l2": [
+      1.6305011510849,
+      2.999756097793579,
+      6.165971755981445,
+      7.040530204772949,
+      5.6656270027160645
+    ],
+    "step_l2_max_over_mean": 1.4978328943252563,
+    "pred_classes_along_path": [
+      "Trouser",
+      "Trouser",
+      "Dress",
+      "Dress",
+      "Bag",
+      "Bag"
+    ]
+  }
+}

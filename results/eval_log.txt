@@ -1,0 +1,16 @@
+[data] torchvision download gagal, pakai fallback /home/claude/dl-generative-fmnist/data/fmnist_all.npz
+ae {'test_mse': 0.006425981875509024, 'test_psnr': 23.075111389160156, 'test_ssim': 0.8288766948687818, 'latency_recon_ms_b64': 0.5523204999917652, 'latent_frac_near_zero': 0.0006361607229337096, 'latent_mean_abs': 1.1713837385177612, 'latent_active_units': 64}
+sae {'test_mse': 0.009031838737428188, 'test_psnr': 21.448389053344727, 'test_ssim': 0.7715215232303643, 'latency_recon_ms_b64': 0.4157069997745566, 'latent_frac_near_zero': 0.484738826751709, 'latent_mean_abs': 0.12425544112920761, 'latent_active_units': 37}
+vae {'test_mse': 0.01307965349406004, 'test_psnr': 19.70227813720703, 'test_ssim': 0.7075128830876557, 'latency_recon_ms_b64': 0.5231764998825383, 'latent_frac_near_zero': 0.01740848273038864, 'latent_mean_abs': 0.16478091478347778, 'latent_active_units': 64}
+ddpm sampled 250
+ddpm sampled 500
+ddpm sampled 750
+ddpm sampled 1000
+real acts (7000, 2048)
+FID floor (real vs real, N=1000): 15.583055318841389
+vae FID 96.80379222096673 {'class_hist': [78, 75, 52, 100, 127, 112, 89, 122, 169, 76], 'norm_entropy': 0.9783729910850525, 'n_modes_ge_5pct': 10}
+gan FID 139.22486760310682 {'class_hist': [110, 91, 117, 119, 94, 87, 98, 109, 108, 67], 'norm_entropy': 0.9948175549507141, 'n_modes_ge_5pct': 10}
+dcgan FID 40.37958297190289 {'class_hist': [112, 119, 85, 80, 102, 88, 80, 114, 116, 104], 'norm_entropy': 0.9952749609947205, 'n_modes_ge_5pct': 10}
+ddpm FID 71.11082641117954 {'class_hist': [100, 65, 73, 113, 105, 122, 130, 109, 113, 70], 'norm_entropy': 0.9893324971199036, 'n_modes_ge_5pct': 10}
+extra {'vanilla_ae_gaussian_latent_sampling': 227.10478599794865, 'mlp_latent_gaussian_sampling': 163.78844225443802}
+DONE

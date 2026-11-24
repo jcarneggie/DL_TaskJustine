@@ -1,0 +1,163 @@
+{
+  "ae": {
+    "test_mse": 0.006425981875509024,
+    "test_psnr": 23.075111389160156,
+    "test_ssim": 0.8288766948687818,
+    "latency_recon_ms_b64": 0.5523204999917652,
+    "latent_frac_near_zero": 0.0006361607229337096,
+    "latent_mean_abs": 1.1713837385177612,
+    "latent_active_units": 64,
+    "train_time_per_epoch_s_logged": 2.1005599816640217,
+    "train_time_per_epoch_s": 2.1255315464868545,
+    "epochs": 30,
+    "final_train_loss": 0.006278210787366242,
+    "loss_monotonic_frac": 1.0
+  },
+  "sae": {
+    "test_mse": 0.009031838737428188,
+    "test_psnr": 21.448389053344727,
+    "test_ssim": 0.7715215232303643,
+    "latency_recon_ms_b64": 0.4157069997745566,
+    "latent_frac_near_zero": 0.484738826751709,
+    "latent_mean_abs": 0.12425544112920761,
+    "latent_active_units": 37,
+    "train_time_per_epoch_s_logged": 15.452559113502502,
+    "train_time_per_epoch_s": 2.175099765633058,
+    "epochs": 30,
+    "final_train_loss": 0.009686599468565696,
+    "loss_monotonic_frac": 1.0
+  },
+  "vae": {
+    "test_mse": 0.01307965349406004,
+    "test_psnr": 19.70227813720703,
+    "test_ssim": 0.7075128830876557,
+    "latency_recon_ms_b64": 0.5231764998825383,
+    "latent_frac_near_zero": 0.01740848273038864,
+    "latent_mean_abs": 0.16478091478347778,
+    "latent_active_units": 64,
+    "latency_gen_ms_b64": 0.31614450017514173,
+    "fid": 96.80379222096673,
+    "mode_coverage": {
+      "class_hist": [
+        78,
+        75,
+        52,
+        100,
+        127,
+        112,
+        89,
+        122,
+        169,
+        76
+      ],
+      "norm_entropy": 0.9783729910850525,
+      "n_modes_ge_5pct": 10
+    },
+    "train_time_per_epoch_s_logged": 14.569779864947002,
+    "train_time_per_epoch_s": 2.3815697025043847,
+    "epochs": 30,
+    "final_train_loss": 240.71358437734108,
+    "loss_monotonic_frac": 1.0
+  },
+  "gan": {
+    "latency_gen_ms_b64": 1.329820999671938,
+    "fid": 139.22486760310682,
+    "mode_coverage": {
+      "class_hist": [
+        110,
+        91,
+        117,
+        119,
+        94,
+        87,
+        98,
+        109,
+        108,
+        67
+      ],
+      "norm_entropy": 0.9948175549507141,
+      "n_modes_ge_5pct": 10
+    },
+    "train_time_per_epoch_s_logged": 8.837679821252824,
+    "train_time_per_epoch_s": 8.309639158181925,
+    "epochs": 40,
+    "g_loss_std_last10": 0.009426644317091256,
+    "iter_g_loss_cv": 0.26572684854446355,
+    "d_real_last": 0.535332362809682,
+    "d_fake_last": 0.46596693346217344
+  },
+  "dcgan": {
+    "latency_gen_ms_b64": 8.806321499832848,
+    "fid": 40.37958297190289,
+    "mode_coverage": {
+      "class_hist": [
+        112,
+        119,
+        85,
+        80,
+        102,
+        88,
+        80,
+        114,
+        116,
+        104
+      ],
+      "norm_entropy": 0.9952749609947205,
+      "n_modes_ge_5pct": 10
+    },
+    "train_time_per_epoch_s_logged": 61.54599296251933,
+    "train_time_per_epoch_s": 59.02932519630904,
+    "epochs": 15,
+    "g_loss_std_last10": 0.010206606350445945,
+    "iter_g_loss_cv": 0.33226532426297445,
+    "d_real_last": 0.66989332604643,
+    "d_fake_last": 0.3296764252806235
+  },
+  "ddpm": {
+    "latency_gen_ms_b64": 51466.01463099978,
+    "sampling_steps": 500,
+    "fid": 71.11082641117954,
+    "mode_coverage": {
+      "class_hist": [
+        100,
+        65,
+        73,
+        113,
+        105,
+        122,
+        130,
+        109,
+        113,
+        70
+      ],
+      "norm_entropy": 0.9893324971199036,
+      "n_modes_ge_5pct": 10
+    },
+    "train_time_per_epoch_s_logged": 390.98966228961945,
+    "train_time_per_epoch_s": 263.86372614304673,
+    "epochs": 6,
+    "final_train_loss": 0.04623606035137149,
+    "loss_monotonic_frac": 1.0
+  },
+  "reference_fid_real_train_1000_vs_test": 15.583055318841389,
+  "real_test_mode_coverage": {
+    "class_hist": [
+      730,
+      681,
+      638,
+      748,
+      790,
+      700,
+      704,
+      702,
+      657,
+      650
+    ],
+    "norm_entropy": 0.9991263747215271,
+    "n_modes_ge_5pct": 10
+  },
+  "extra_fid": {
+    "vanilla_ae_gaussian_latent_sampling": 227.10478599794865,
+    "mlp_latent_gaussian_sampling": 163.78844225443802
+  }
+}
