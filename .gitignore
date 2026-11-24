@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+data/
+results/ckpt/*.pt
+!results/ckpt/README.md
+.DS_Store
